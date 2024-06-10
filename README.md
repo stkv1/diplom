@@ -39,6 +39,10 @@
 
 ![image](https://github.com/stkv1/diplom/assets/145263196/672be4db-c8b9-45ab-b6fb-d8597ea1b3ee)
 
+*Вывод в браузере по IP балансировщика*
+
+![100](https://github.com/stkv1/diplom/assets/145263196/3577f345-3fe3-46c1-83c7-cfc8aef3c6e8)
+
 
 ## Мониторинг
 
