@@ -79,6 +79,12 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 *Выполнено. Ansible установлен непосредственно на Bastion-хост*
 
+![101](https://github.com/stkv1/diplom/assets/145263196/a37c36b3-380a-49e9-bf5b-46ac4ab18f4b)
+
+![102](https://github.com/stkv1/diplom/assets/145263196/0624607a-12db-4202-ad6a-0bf0cff5865a)
+
+
+
 ***Особенности реализации этого блока***
 
 *Реализация наполнения файла Inventory и передачи его в Ansible выполнена следующим образом:
