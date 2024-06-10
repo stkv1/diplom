@@ -19,7 +19,9 @@
 Протестируйте сайт curl -v <публичный IP балансера>:80
 
 *Выполнено*
+
 *Тест соединения*
+
 ![image](https://github.com/stkv1/diplom/assets/145263196/672be4db-c8b9-45ab-b6fb-d8597ea1b3ee)
 
 
