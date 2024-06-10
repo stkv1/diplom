@@ -4,7 +4,7 @@
 
 ## Описание файлов Terraform
 
-* bastion.tf - схема развертывания Bastion-хоста
+* bastion.tf - схема развертывания Bastion-хоста с Ansible и выгрузки на него инвентори
 * elastic.tf - схема развертывания сервера Elasticsearch
 * image-ansible.tf - схема создания диска Bastion-хоста на основе предварительно загруженного образа.
 * inventory.tpl - шаблон наполнения инвентори
