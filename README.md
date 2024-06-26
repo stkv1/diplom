@@ -51,17 +51,17 @@
 
 *Задача в процессе выполнения*
 
-*Есть сложности с развертыванием Zabbix через Ansible*
-
 *Используется готовая роль из Ansible Community*
 
 <https://galaxy.ansible.com/ui/repo/published/community/zabbix>
 
 <https://galaxy.ansible.com/ui/repo/published/community/zabbix/docs/>
 
-*В процессе развертывания обнаружено, что роль работает только с дистрибутивами не старше Debian-10. 
-В частности, по причине того, что в переменных нет ссылок на репозитории Zabbix для Debian новее 10 версии
-Также, возникают сложности с установкой GPG-ключей - ссылка на ключ генерируется неправильно из-за отсутсвия в переменных информации о Debian новее 10 версии*
+Устанавливаем роль:
+ansible-galaxy collection install community.zabbix
+
+Установка производится в 
+~/.ansible/collections/ansible_collections/community/zabbix/
 
 
 ## Логи
