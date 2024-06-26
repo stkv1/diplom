@@ -16,6 +16,8 @@
 ## Описание файлов Ansible
 
 * nginx.yml - плейбук развертывания nginx
+* zabbix-server.yml - плейбук развертывания zabbix-server через роль
+* zabbix-web.yml - плейбук развертывания zabbix-web через роль
 
 ## Инфраструктура
 Для развёртки инфраструктуры используйте Terraform и Ansible.
@@ -57,11 +59,18 @@
 
 <https://galaxy.ansible.com/ui/repo/published/community/zabbix/docs/>
 
-Устанавливаем роль:
+Устанавливаем коллекцию ролей:
 ansible-galaxy collection install community.zabbix
+Коллекция включает роли Zabbix, Zabbix-Web, Zabbix-Agent, Zabbix-Proxy, Mysql
 
 Установка производится в 
 ~/.ansible/collections/ansible_collections/community/zabbix/
+
+Zabbix установлен
+
+![133 — копия](https://github.com/stkv1/diplom/assets/145263196/0dc2bd34-1ef4-4f5a-964e-d67a8e9c8bfa)
+
+![136](https://github.com/stkv1/diplom/assets/145263196/4fea90ea-0dcf-475a-b81c-52441d359d0c)
 
 
 ## Логи
