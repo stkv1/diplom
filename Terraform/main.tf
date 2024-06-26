@@ -15,8 +15,8 @@ variable "yandex_cloud_token" {
 
 provider "yandex" {
   token                    = var.yandex_cloud_token
-  cloud_id                 = "********************"
-  folder_id                = "********************"
+  cloud_id                 = "b1gb2jo6jnscm01lbu8i"
+  folder_id                = "b1gbs69rm17l1ks91fee"
   zone                     = "ru-cetral1-b"
 }
 
@@ -30,7 +30,7 @@ provider "yandex" {
 # Determine service account role for folder
 # If service account already exists, this section not needed
 resource "yandex_resourcemanager_folder_iam_member" "editor" {
-  folder_id = "********************"
+  folder_id = "b1gbs69rm17l1ks91fee"
   role      = "editor"
   member    = "serviceAccount:${yandex_iam_service_account.terraform.id}"
 }*/
@@ -94,12 +94,12 @@ resource "yandex_compute_instance_group" "ig-1" {
     network_interface {
       network_id = "${yandex_vpc_network.network-1.id}"
       subnet_ids = ["${yandex_vpc_subnet.subnet-1.id}","${yandex_vpc_subnet.subnet-2.id}"]
-      nat = true
+      nat = false
     }
 
     # create interruptible vm
     scheduling_policy {
-      preemptible = true
+      preemptible = false
     }
   }
 
@@ -211,6 +211,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
   zone           = "ru-central1-a"
   v4_cidr_blocks = ["192.168.10.0/24"]
   network_id     = "${yandex_vpc_network.network-1.id}"
+  route_table_id = yandex_vpc_route_table.rt.id
 }
   
 resource "yandex_vpc_subnet" "subnet-2" {
@@ -218,5 +219,20 @@ resource "yandex_vpc_subnet" "subnet-2" {
   zone           = "ru-central1-b"
   v4_cidr_blocks = ["192.168.20.0/24"]
   network_id     = "${yandex_vpc_network.network-1.id}"
+  route_table_id = yandex_vpc_route_table.rt.id
 }
 
+resource "yandex_vpc_gateway" "nat_gateway" {
+  name = "test-gateway"
+  shared_egress_gateway {}
+}
+
+resource "yandex_vpc_route_table" "rt" {
+  name       = "test-route-table"
+  network_id = yandex_vpc_network.network-1.id
+
+  static_route {
+    destination_prefix = "0.0.0.0/0"
+    gateway_id         = yandex_vpc_gateway.nat_gateway.id
+  }
+}
