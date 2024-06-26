@@ -1,11 +1,11 @@
 ---
-- name: Install zabbix-server
+- name: Install zabbix-web   
   hosts: zabbix-server
   become: true
-  become_user: stanislav
+  become_user: root
   roles:
-    - role: community.zabbix.zabbix_server
+    - role: community.zabbix.zabbix_web
+      zabbix_api_server_url: zabbix.example.com
       zabbix_server_database: mysql
-      zabbix_server_database_long: mysql
-      
-
+      zabbix_db_type_long: mysql
+      zabbix_server_dbport: 3306
