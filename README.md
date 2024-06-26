@@ -68,7 +68,7 @@ ansible-galaxy collection install community.zabbix
 
 Zabbix установлен
 
-![136](https://github.com/stkv1/diplom/assets/145263196/4fea90ea-0dcf-475a-b81c-52441d359d0c)
+![133 — копия](https://github.com/stkv1/diplom/assets/145263196/204433db-8855-4b00-a22a-5c50f7d40df8)
 
 ![138](https://github.com/stkv1/diplom/assets/145263196/4f7bd5e0-b7b8-4c76-9811-1cd8c4b2c64e)
 
