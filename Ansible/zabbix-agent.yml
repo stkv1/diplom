@@ -1,0 +1,10 @@
+- hosts: nginx
+  tasks:
+    - include_role:
+        name: community.zabbix.zabbix_agent
+      vars:
+        zabbix_agent_server: zabbix.mydomain.com
+        zabbix_agent_userparameters:
+          - name: mysql
+            scripts_dir: mysql
+          - name: galera
