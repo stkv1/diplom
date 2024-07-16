@@ -121,6 +121,11 @@ Kibana установлена
 
 ![151](https://github.com/user-attachments/assets/dd9ac841-e3ff-4ec5-b3ce-13c81f0d8147)
 
+Также установлен Filebeat:
+
+![188](https://github.com/user-attachments/assets/64dc9541-fc78-482a-bfe9-3eb85569eaa1)
+
+
 *Задача передачи логов filebeat => Elasticsearch => Kibana в процессе выполнения*
 
 ## Сеть
