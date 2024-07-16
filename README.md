@@ -18,6 +18,8 @@
 * nginx.yml - плейбук развертывания nginx
 * zabbix-server.yml - плейбук развертывания zabbix-server через роль
 * zabbix-web.yml - плейбук развертывания zabbix-web через роль
+* zabbix-agent.yml - плейбук развертывания zabbix-agent через роль
+* kibana.yml - плейбук для развертывания kibana
 
 ## Инфраструктура
 Для развёртки инфраструктуры используйте Terraform и Ansible.
@@ -51,8 +53,6 @@
 Создайте ВМ, разверните на ней Zabbix. На каждую ВМ установите Zabbix Agent, настройте агенты на отправление метрик в Zabbix.
 Настройте дешборды с отображением метрик, минимальный набор — по принципу USE (Utilization, Saturation, Errors) для CPU, RAM, диски, сеть, http запросов к веб-серверам. Добавьте необходимые tresholds на соответствующие графики.
 
-*Задача в процессе выполнения*
-
 *Используется готовая роль из Ansible Community*
 
 <https://galaxy.ansible.com/ui/repo/published/community/zabbix>
@@ -72,6 +72,17 @@ Zabbix установлен
 
 ![138](https://github.com/stkv1/diplom/assets/145263196/4f7bd5e0-b7b8-4c76-9811-1cd8c4b2c64e)
 
+Для мониторинга создан собственный шаблон, куда добавлены следующие метрики:
+
+![173](https://github.com/user-attachments/assets/b2b71830-f6ab-409d-9f62-900cd18891d7)
+
+Для мониторинга Nginx использован встроенный шаблон Nginx by Zabbix Agent
+
+Графики для метрик собраны в дашборды
+
+![185](https://github.com/user-attachments/assets/ac05c035-26bb-4611-abe8-76ad15a25d83)
+
+![186](https://github.com/user-attachments/assets/ab769328-bb08-4c1a-9712-be87899b4d3c)
 
 
 ## Логи
@@ -79,7 +90,38 @@ Zabbix установлен
 Cоздайте ВМ, разверните на ней Elasticsearch. Установите filebeat в ВМ к веб-серверам, настройте на отправку access.log, error.log nginx в Elasticsearch.
 Создайте ВМ, разверните на ней Kibana, сконфигурируйте соединение с Elasticsearch.
 
-*Задача в процессе выполнения*
+Для развертывания Elasticsearch использовалась готовая роль
+
+<https://github.com/elastic/ansible-elasticsearch>
+
+В процессе в роль были внесены правки в связи с недоступностью продуктов Elasticsearch из России
+Ссылки были изменены на зеркало Яндекса:
+
+<https://mirror.yandex.ru/mirrors/elastic/7/>
+
+<https://mirror.yandex.ru/mirrors/elastic/8/>
+
+Некоторые шаги в роли (например, скачивание и установка GPG-ключа для репозитория Elasticsearch) были пропущены для успешного завершения установки
+
+Elasticsearch успешно установлен и запущен
+
+![141](https://github.com/user-attachments/assets/e7e2be96-613a-4e20-9368-783a1c5981f6)
+
+![182](https://github.com/user-attachments/assets/6da48cb5-464b-41a2-aee3-aa8c68dcab8b)
+
+Для развертывания Kibana использовалась следующая роль:
+
+ansible-galaxy install geerlingguy.kibana
+
+Также были переписаны ссылки на зеркала Яндекса:
+
+<https://mirror.yandex.ru/mirrors/elastic/7/pool/main/k/kibana/>
+
+Kibana установлена
+
+![151](https://github.com/user-attachments/assets/dd9ac841-e3ff-4ec5-b3ce-13c81f0d8147)
+
+*Задача передачи логов filebeat => Elasticsearch => Kibana в процессе выполнения*
 
 ## Сеть
 
