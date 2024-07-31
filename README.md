@@ -12,6 +12,7 @@
 * main.tf - основная схема развертывания кластера с балансировщиками, таргет-группами, группами бэкендов, HTTP-роутером и сетями
 * upload-inventory.tf - наполнение инвентори из outputs.tf и выгрузка в бакет
 * zabbix.tf - схема развертывания сервера Zabbix
+* security-groups.tf - группы безопасности
 
 ## Описание файлов Ansible
 
@@ -60,7 +61,7 @@
 <https://galaxy.ansible.com/ui/repo/published/community/zabbix/docs/>
 
 Устанавливаем коллекцию ролей:
-ansible-galaxy collection install community.zabbix
+*ansible-galaxy collection install community.zabbix*
 Коллекция включает роли Zabbix, Zabbix-Web, Zabbix-Agent, Zabbix-Proxy, Mysql
 
 Установка производится в 
@@ -125,8 +126,17 @@ Kibana установлена
 
 ![188](https://github.com/user-attachments/assets/64dc9541-fc78-482a-bfe9-3eb85569eaa1)
 
+Настроена передача логов из filebeat в Elasticsearch и далее в Kibana.
 
-*Задача передачи логов filebeat => Elasticsearch => Kibana в процессе выполнения*
+Логи в Elasticsearch:
+
+![206](https://github.com/user-attachments/assets/85733538-ca46-4c45-9bed-ab1fc728c0b9)
+
+Графики в Kibana:
+
+![238](https://github.com/user-attachments/assets/cac0f5e6-0e57-4f02-9728-ba48613d70f8)
+
+*Выполнено*
 
 ## Сеть
 
@@ -156,6 +166,8 @@ Kibana установлена
 *Ansible установлен на бастион-хосте, все плейбуки и роли также находятся на нем
 Для сохранения состояния бастион-хоста, перед уничтожением инфраструктуры сохраняется снапшот диска.
 Перед повторным развертыванием бастиона, через переменную передается id снапшота, через него бастион развертывается со всеми сохраненными изменениями*
+
+*Добавлены security-groups для балансировщика, серверов Zabbix и Kibana (см. соответствующий файл security-groups.tf)*
 
 ### Резервное копирование
 
